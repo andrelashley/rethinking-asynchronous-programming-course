@@ -19,10 +19,21 @@ function output(text) {
 
 // **************************************
 // The old-n-busted callback way
+var results = [];
 
 function getFile(file) {
-	fakeAjax(file,function(text){
-		// what do we do here?
+	fakeAjax(file,function(text) {
+		var res = {};
+		res[file] = text;
+		results.push(res);
+
+		if(results.length == 3) {
+			results.sort();
+			results.forEach((el, idx, arr) => {
+				console.log(el);
+			});
+			console.log("Complete!");
+		}
 	});
 }
 
